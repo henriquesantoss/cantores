@@ -11,13 +11,14 @@ function App() {
     setCountry(newCountry);
   };
 
-  useEffect(() => {
+ useEffect(() => {
     setLoading(true);
 
     const githubUrl =
       "https://raw.githubusercontent.com/henriquesantoss/cantor/main/cantor.json";
 
     fetch(githubUrl)
+      .then((response) => response.json()) // Converte a resposta para JSON
       .then((data) => {
         const cantoresData = data[country];
         setCantores(cantoresData);
@@ -28,6 +29,7 @@ function App() {
         setLoading(false);
       });
   }, [country]);
+
 
   return (
     <main>
